@@ -29,8 +29,8 @@ class VerificationTokenManager(models.Manager):
         if token and token.is_valid:
             return token
         else:
-            return self._create(obj, slug=slug, extra_data=extra_data, key_generator_kwargs=key_generator_kwargs,
-                                **kwargs
+            return self._create(
+                obj, slug=slug, extra_data=extra_data, key_generator_kwargs=key_generator_kwargs, **kwargs
             )
 
     def _create(self, obj, slug=None, extra_data=None, key_generator_kwargs=None, **kwargs):

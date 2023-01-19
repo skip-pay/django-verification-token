@@ -5,7 +5,7 @@ from django.core.management import call_command
 from django.utils import timezone
 
 from freezegun import freeze_time
-from germanium.annotations import data_provider
+from germanium.decorators import data_consumer
 from germanium.test_cases.default import GermaniumTestCase
 from germanium.tools import assert_equal
 from germanium.tools.models import assert_qs_contains, assert_qs_not_contains
@@ -22,7 +22,7 @@ __all__ = (
 class CleanVerificationTokensCommandTestCase(BaseTestCaseMixin, GermaniumTestCase):
 
     @freeze_time(timezone.now())
-    @data_provider('create_user')
+    @data_consumer('create_user')
     def test_clean_verification_tokens_removes_only_non_active_tokens(self, user):
         active_tokens_without_expirations = [VerificationToken.objects.deactivate_and_create(
             obj=user, deactivate_old_tokens=False, expiration_in_minutes=None) for _ in range(10)]

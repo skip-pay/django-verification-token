@@ -23,7 +23,8 @@ class Migration(migrations.Migration):
                 ('expiration_in_minutes', models.PositiveIntegerField(blank=True, default=None, null=True)),
                 ('slug', models.SlugField(blank=True, null=True)),
                 ('is_active', models.BooleanField(default=True)),
-                ('content_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contenttypes.ContentType')),
+                ('content_type', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='contenttypes.ContentType')),
             ],
             options={
                 'ordering': ('-created_at',),
